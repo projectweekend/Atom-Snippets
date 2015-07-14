@@ -1,0 +1,98 @@
+'.source.python':
+  'try/except':
+    'prefix': 'try'
+    'body': """
+    try:
+        ${1:something}
+    except ${2:exception}:
+        ${3:pass}
+    """
+'.source.python':
+  'Unittest Test Case':
+    'prefix': 'TestCase'
+    'body': """
+    class ${1:Whatever}TestCase(${2:unittest.TestCase}):
+
+        def setUp(self):
+            super(${1:Whatever}, self).setUp()
+    """
+'.source.python':
+  'Unittest test method':
+    'prefix': 'test'
+    'body': """
+    def test_${1:whatever}(self):
+        ${2:pass}
+    """
+'.source.python':
+  'Falcon Collection Handler':
+    'prefix': 'falcon_collection'
+    'body': """
+    class ${1:Whatever}Collection(${2:object}):
+
+        def on_post(self, req, res):
+            pass
+
+        def on_get(self, req, res):
+            pass
+    """
+'.source.python':
+  'Falcon Item Handler':
+    'prefix': 'falcon_item'
+    'body': """
+    class ${1:Whatever}Item(${2:object}):
+
+        def on_get(self, req, res, ${3:url_param}):
+            pass
+
+        def on_put(self, req, res, ${3:url_param}):
+            pass
+
+        def on_delete(self, req, res, ${3:url_param}):
+            pass
+    """
+'.source.js':
+  'console.log':
+    'prefix': 'log'
+    'body': 'console.log(${1:whatever});'
+'.source.js':
+  'object':
+    'prefix': 'object'
+    'body': """
+    var ${1:whatever} = {
+        ${2:whateverProp}:
+    };
+    """
+'.source.js':
+  'anon function':
+    'prefix': 'anon'
+    'body': """
+    function (${1:params}) {
+        ${2:stuff}
+    }
+    """
+'.source.js':
+  'Mocha Describe':
+    'prefix': 'desc'
+    'body': """
+    describe("${1:whatever}", function () {
+        ${2:stuff}
+    });
+    """
+'.source.js':
+  'Mocha It':
+    'prefix': 'it'
+    'body': """
+    it("${1:whatever}", function (done) {
+        ${2:stuff}
+        done();
+    });
+    """
+'.source.js':
+  'Node Sub Class':
+    'prefix': 'subClass'
+    'body': """
+    function ${1:ChildClass} () {
+        ${2:ParentClass}.call(this);
+    }
+    util.inherits(${1:ChildClass}, ${2:ParentClass});
+    """
