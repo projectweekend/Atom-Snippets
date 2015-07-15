@@ -7,7 +7,6 @@
     except ${2:exception}:
         ${3:pass}
     """
-'.source.python':
   'Unittest Test Case':
     'prefix': 'TestCase'
     'body': """
@@ -16,14 +15,12 @@
         def setUp(self):
             super(${1:Whatever}, self).setUp()
     """
-'.source.python':
   'Unittest test method':
     'prefix': 'test'
     'body': """
     def test_${1:whatever}(self):
         ${2:pass}
     """
-'.source.python':
   'Falcon Collection Handler':
     'prefix': 'falcon_collection'
     'body': """
@@ -35,7 +32,6 @@
         def on_get(self, req, res):
             pass
     """
-'.source.python':
   'Falcon Item Handler':
     'prefix': 'falcon_item'
     'body': """
@@ -54,7 +50,6 @@
   'console.log':
     'prefix': 'log'
     'body': 'console.log(${1:whatever});'
-'.source.js':
   'object':
     'prefix': 'object'
     'body': """
@@ -62,7 +57,6 @@
         ${2:whateverProp}:
     };
     """
-'.source.js':
   'anon function':
     'prefix': 'anon'
     'body': """
@@ -70,7 +64,6 @@
         ${2:stuff}
     }
     """
-'.source.js':
   'Mocha Describe':
     'prefix': 'desc'
     'body': """
@@ -78,7 +71,6 @@
         ${2:stuff}
     });
     """
-'.source.js':
   'Mocha It':
     'prefix': 'it'
     'body': """
@@ -87,7 +79,6 @@
         done();
     });
     """
-'.source.js':
   'Node Sub Class':
     'prefix': 'subClass'
     'body': """
