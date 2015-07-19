@@ -87,3 +87,156 @@
     }
     util.inherits(${1:ChildClass}, ${2:ParentClass});
     """
+'.source.sql':
+  'Insert SP Template':
+    'prefix': 'InsertSP'
+    'body': """
+    CREATE FUNCTION ${1:sp_whatever_insert}
+    (
+        ${2:params}
+    )
+
+    RETURNS TABLE
+    (
+        jdoc JSON
+    ) AS
+
+    \$\$
+    BEGIN
+        RETURN      QUERY
+        WITH i AS (
+            INSERT INTO     ${3:table_name}
+                            (
+                                ${4:field_names}
+                            )
+            VALUES          (
+                                ${5:value_names}
+                            )
+            RETURNING       ${6:field_names}
+        )
+        SELECT      ROW_TO_JSON(i.*)
+        FROM        i;
+    END;
+    \$\$
+
+    LANGUAGE plpgsql;
+    """
+  'Update SP Template':
+    'prefix': 'UpdateSP'
+    'body': """
+    CREATE FUNCTION ${1:sp_whatever_update}
+    (
+        ${2:params}
+    )
+
+    RETURNS TABLE
+    (
+        jdoc JSON
+    ) AS
+
+    \$\$
+    BEGIN
+        RETURN     QUERY
+        WITH i AS (
+            UPDATE          ${3:table_name}
+            SET             ${4:field_names}
+            WHERE           ${5:field_names}
+            RETURNING       ${6:field_names}
+        )
+        SELECT      ROW_TO_JSON(i.*)
+        FROM        i;
+    END;
+    \$\$
+
+    LANGUAGE plpgsql;
+    """
+  'List SP Template':
+    'prefix': 'ListSP'
+    'body': """
+    CREATE FUNCTION ${1:sp_whatever_list}
+    (
+        ${2:params}
+    )
+
+    RETURNS TABLE
+    (
+        record_count INTEGER,
+        jdoc JSON
+    ) AS
+
+    \$\$
+    DECLARE     recordCount INTEGER;
+
+    BEGIN
+        SELECT      COUNT(*) INTO recordCount
+        FROM        ${3:table_name}
+        WHERE       ${4:field_names};
+
+        RETURN      QUERY
+
+        WITH i AS (
+            SELECT          ${5:field_names}
+            FROM            ${3:table_name}
+            WHERE           ${6:field_names}
+            ORDER BY        ${7:field_names}
+            OFFSET          skip
+            LIMIT           take
+        )
+
+        SELECT      recordCount,
+                    ARRAY_TO_JSON(ARRAY_AGG(i.*))
+        FROM        i;
+    END;
+    \$\$
+
+    LANGUAGE plpgsql;
+    """
+  'Select SP Template':
+    'prefix': 'SelectSP'
+    'body': """
+    CREATE FUNCTION ${1:sp_whatever_select}
+    (
+        ${2:params}
+    )
+
+    RETURNS TABLE
+    (
+        jdoc JSON
+    ) AS
+
+    \$\$
+    BEGIN
+        RETURN      QUERY
+        WITH d AS (
+            SELECT      ${3:field_names}
+            FROM        ${4:table_name}
+            WHERE       ${5:field_names}
+        )
+        SELECT      row_to_json(d.*)
+        FROM        d;
+
+    END;
+    \$\$
+
+    LANGUAGE plpgsql;
+    """
+  'Delete SP':
+    'prefix': 'DeleteSP'
+    'body': """
+    CREATE FUNCTION ${1:sp_whatever_delete}
+    (
+        ${2:params}
+    )
+
+    RETURNS BOOLEAN AS
+
+    \$\$
+    BEGIN
+        DELETE FROM     ${3:table_name}
+        WHERE           ${4:field_names};
+        RETURN          FOUND;
+    END;
+    \$\$
+
+    LANGUAGE plpgsql;
+    """
