@@ -46,6 +46,12 @@
         def on_delete(self, req, res, ${3:url_param}):
             pass
     """
+  'If main':
+    'prefix': 'ifmain'
+    'body': """
+    if __name__ == "__main__":
+        main()
+    """
 '.source.js':
   'console.log':
     'prefix': 'log'
