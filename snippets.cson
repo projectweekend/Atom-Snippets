@@ -190,7 +190,7 @@
         )
 
         SELECT      recordCount,
-                    ARRAY_TO_JSON(ARRAY_AGG(i.*))
+                    JSON_AGG(i.*)
         FROM        i;
     END;
     \$\$
