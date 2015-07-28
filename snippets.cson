@@ -1,3 +1,116 @@
+'.source.gfm':
+  'API Create Route Documentation':
+    'prefix': 'APICreateDoc'
+    'body': """
+    ### Create ${1:Whatever}
+
+    **POST:**
+    ```
+    ${2:route}
+    ```
+
+    **Body:**
+    ```json
+    ${3:Request Body}
+    ```
+
+    **Response:**
+    ```json
+    ${4:Response Body}
+    ```
+
+    **Status Codes:**
+    * `201` if successful
+    * `400` if incorrect data provided
+    * `409` if unique constraint violation
+    """
+  'API List Route Documentation':
+    'prefix': 'APIListDoc'
+    'body': """
+    ### Get a list of ${1:Whatever}
+
+    **GET:**
+    ```
+    ${2:route}
+    ```
+
+    **Query Parameters:**
+
+    * ${3:query params}
+
+    **Response:**
+    ```json
+    ${4:Response Body}
+    ```
+
+    **Status Codes:**
+    * `200` if successful
+    * `400` if invalid query parameters
+    * `401` if invalid credentials
+    """
+  'API Single Route Document':
+    'prefix': 'APISingleDoc'
+    'body': """
+    ### Get a ${1:Whatever}
+
+    **GET:**
+    ```
+    ${2:route}
+    ```
+
+    **Response:**
+    ```json
+    ${3:Response Body}
+    ```
+
+    **Status Codes:**
+    * `200` if successful
+    * `401` if invalid credentials
+    * `404` if does not exist
+    """
+  'API Update Route Document':
+    'prefix': 'APIUpdateDoc'
+    'body': """
+    ### Update a ${1:Whatever}
+
+    **PUT:**
+    ```
+    ${2:route}
+    ```
+
+    **Body:**
+    ```json
+    ${3:Request Body}
+    ```
+
+    **Response:**
+    ```json
+    ${4:Response Body}
+    ```
+
+    **Status Codes:**
+    * `200` if successful
+    * `400` if invalid data
+    * `401` if invalid credentials
+    * `404` if does not exist
+    """
+  'API Delete Route Document':
+    'prefix': 'APIDeleteDoc'
+    'body': """
+    ### Delete a ${1:Whatever}
+
+    **DELETE:**
+    ```
+    ${2:route}
+    ```
+
+    **Response:** None
+
+    **Status Codes:**
+    * `204` if successful
+    * `401` if invalid credentials
+    * `404` if does not exist
+    """
 '.source.python':
   'try/except':
     'prefix': 'try'
