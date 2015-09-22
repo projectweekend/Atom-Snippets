@@ -198,14 +198,6 @@
         done();
     });
     """
-  'Node Sub Class':
-    'prefix': 'subClass'
-    'body': """
-    function ${1:ChildClass} () {
-        ${2:ParentClass}.call(this);
-    }
-    util.inherits(${1:ChildClass}, ${2:ParentClass});
-    """
 '.source.sql':
   'Insert SP Template':
     'prefix': 'InsertSP'
