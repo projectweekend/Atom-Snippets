@@ -126,7 +126,7 @@
     class ${1:Whatever}TestCase(${2:unittest.TestCase}):
 
         def setUp(self):
-            super(${1:Whatever}, self).setUp()
+            super(${1:Whatever}TestCase, self).setUp()
     """
   'Unittest test method':
     'prefix': 'test'
