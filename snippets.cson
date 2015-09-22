@@ -215,7 +215,7 @@
     \$\$
     BEGIN
         RETURN      QUERY
-        WITH i AS (
+        WITH inserted AS (
             INSERT INTO     ${3:table_name}
                             (
                                 ${4:field_names}
@@ -225,8 +225,8 @@
                             )
             RETURNING       ${6:field_names}
         )
-        SELECT      ROW_TO_JSON(i.*)
-        FROM        i;
+        SELECT      ROW_TO_JSON(inserted.*)
+        FROM        inserted;
     END;
     \$\$
 
@@ -248,14 +248,14 @@
     \$\$
     BEGIN
         RETURN     QUERY
-        WITH i AS (
+        WITH updated AS (
             UPDATE          ${3:table_name}
             SET             ${4:field_names}
             WHERE           ${5:field_names}
             RETURNING       ${6:field_names}
         )
-        SELECT      ROW_TO_JSON(i.*)
-        FROM        i;
+        SELECT      ROW_TO_JSON(updated.*)
+        FROM        updated;
     END;
     \$\$
 
@@ -285,7 +285,7 @@
 
         RETURN      QUERY
 
-        WITH i AS (
+        WITH result AS (
             SELECT          ${5:field_names}
             FROM            ${3:table_name}
             WHERE           ${6:field_names}
@@ -295,8 +295,8 @@
         )
 
         SELECT      recordCount,
-                    JSON_AGG(i.*)
-        FROM        i;
+                    JSON_AGG(result.*)
+        FROM        result;
     END;
     \$\$
 
@@ -318,13 +318,13 @@
     \$\$
     BEGIN
         RETURN      QUERY
-        WITH d AS (
+        WITH result AS (
             SELECT      ${3:field_names}
             FROM        ${4:table_name}
             WHERE       ${5:field_names}
         )
-        SELECT      row_to_json(d.*)
-        FROM        d;
+        SELECT      ROW_TO_JSON(result.*)
+        FROM        result;
 
     END;
     \$\$
