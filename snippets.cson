@@ -351,3 +351,11 @@
 
     LANGUAGE plpgsql;
     """
+'.source.go':
+  'HTTP Handler':
+    'prefix': 'HttpHandler'
+    'body': """
+    func ${1:WhateverHandler}(w http.ResponseWriter, r *http.Request) error {
+        return nil
+    }
+    """
