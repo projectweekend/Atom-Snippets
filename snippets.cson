@@ -366,3 +366,10 @@
         ${2:Prop} ${3:type} `${4:annotation}`
     }
     """
+  'Go Check Test':
+    'prefix': 'check'
+    'body': """
+    func (s *${1:TestSuite}) ${2:TestWhatever}(c *C) {
+        ${3:DoSomething}
+    }
+    """
