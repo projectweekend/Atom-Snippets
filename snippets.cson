@@ -359,3 +359,10 @@
         return nil
     }
     """
+  'Struct':
+    'prefix': 'struct'
+    'body': """
+    type ${1:Whatever} struct {
+        ${2:Prop} ${3:type} `${4:annotation}`
+    }
+    """
