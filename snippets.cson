@@ -137,7 +137,7 @@
   'Falcon Collection Handler':
     'prefix': 'falcon_collection'
     'body': """
-    class ${1:Whatever}Collection(${2:object}):
+    class ${1:Whatever}Collection:
 
         def on_post(self, req, res):
             pass
@@ -148,12 +148,12 @@
   'Falcon Item Handler':
     'prefix': 'falcon_item'
     'body': """
-    class ${1:Whatever}Item(${2:object}):
+    class ${1:Whatever}Item:
 
-        def on_get(self, req, res, ${3:url_param}):
+        def on_get(self, req, res, ${2:url_param}):
             pass
 
-        def on_put(self, req, res, ${3:url_param}):
+        def on_put(self, req, res, ${2:url_param}):
             pass
 
         def on_delete(self, req, res, ${3:url_param}):
@@ -162,6 +162,10 @@
   'If main':
     'prefix': 'ifmain'
     'body': """
+    def main():
+        pass
+
+
     if __name__ == "__main__":
         main()
     """
@@ -169,6 +173,21 @@
   'console.log':
     'prefix': 'log'
     'body': 'console.log(${1:whatever});'
+  'if main':
+    'prefix': 'ifmain'
+    'body': """
+    function main() {
+
+    }
+
+
+    if (require.main === module) {
+        main();
+    }
+    """
+  'module.exports':
+    'prefix': 'exports'
+    'body': 'var exports = module.exports = {};'
   'object':
     'prefix': 'object'
     'body': """
@@ -199,6 +218,15 @@
     });
     """
 '.source.sql':
+  'Create Table Template`':
+    'prefix': 'CreateTbl'
+    'body': """
+    CREATE TABLE IF NOT EXISTS "${1:table_name}"
+    (
+        id          BIGSERIAL PRIMARY KEY,
+        ${2:field_names}
+    );
+    """
   'Insert SP Template':
     'prefix': 'InsertSP'
     'body': """
